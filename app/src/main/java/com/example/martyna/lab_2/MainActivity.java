@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements RequestOperator.R
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        indicator=(IndicatingView)findViewById(R.id.generated_graphic);
+
 
         sendRequestButton=(Button) findViewById(R.id.send_request);
         sendRequestButton.setOnClickListener(requestButtonClicked);
@@ -27,8 +27,9 @@ public class MainActivity extends AppCompatActivity implements RequestOperator.R
         title=(TextView)findViewById(R.id.title);
         bodyText=(TextView)findViewById(R.id.body_text);
 
-        setIndicatorStatus(IndicatingView.SUCCESS);
-        setIndicatorStatus(IndicatingView.FAILED);
+        indicator=(IndicatingView)findViewById(R.id.generated_graphic);
+
+
     }
 
     View.OnClickListener requestButtonClicked = new View.OnClickListener() {
@@ -64,13 +65,15 @@ public class MainActivity extends AppCompatActivity implements RequestOperator.R
     @Override
     public void success(ModelPost publication) {
         this.publication = publication;
+        setIndicatorStatus(IndicatingView.SUCCESS);
         updatePublication();
 
     }
 
     @Override
     public void failed(int responseCode) {
-        this.publication=null;
+        this.publication = null;
+        setIndicatorStatus(IndicatingView.FAILED);
         updatePublication();
     }
 

@@ -39,7 +39,7 @@ public class RequestOperator extends Thread{
 
     private ModelPost request() throws IOException, JSONException{
 
-        URL obj = new URL("http://jsonplaceholder.typicode.com/post/1");
+        URL obj = new URL("http://jsonplaceholder.typicode.com/posts/1");
 
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
@@ -48,7 +48,7 @@ public class RequestOperator extends Thread{
         con.setRequestProperty("Content-Type", "application/json");
 
         responseCode=con.getResponseCode();
-        System.out.println("Response Code:"+responseCode);
+        System.out.println("Response Code:" + responseCode);
 
         InputStreamReader streamReader;
 
