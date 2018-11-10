@@ -10,7 +10,7 @@
         android:text="@string/send_request"
         android:textColor="#fff"
         android:padding="10dp"
-        android:background="@drawable/button_default"/>
+        android:background="@drawable/button"/>
 
     <com.example.martyna.lab_2.IndicatingView
         android:id="@+id/generated_graphic"

@@ -30,11 +30,14 @@ public class MainActivity extends AppCompatActivity implements RequestOperator.R
         indicator=(IndicatingView)findViewById(R.id.generated_graphic);
 
 
+
     }
 
     View.OnClickListener requestButtonClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            setIndicatorStatus(IndicatingView.PASPAUDUS);
+            updatePublication();
             sendRequest();
         }
     };
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements RequestOperator.R
         setIndicatorStatus(IndicatingView.FAILED);
         updatePublication();
     }
+
 
     public void setIndicatorStatus(final int status){
         runOnUiThread(new Runnable() {

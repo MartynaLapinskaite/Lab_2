@@ -11,6 +11,7 @@ public class IndicatingView extends View{
     public static final int NOTEXECUTED = 0;
     public static final int SUCCESS = 1;
     public static final int FAILED = 2;
+    public static final int PASPAUDUS =3;
 
     int state = NOTEXECUTED;
 
@@ -47,9 +48,22 @@ public class IndicatingView extends View{
                 paint.setColor(Color.RED);
                 paint.setStrokeWidth(20f);
 
-                canvas.drawLine(0,0, width, height, paint);
-                canvas.drawLine(0, height, width,0, paint);
+                canvas.drawLine(0,0,width,height,paint);
+                canvas.drawLine(0,height,width,0,paint);
+
+
                 break;
+
+            case PASPAUDUS:
+                paint=new Paint();
+                paint.setColor(Color.CYAN);
+                paint.setStrokeWidth(20f);
+
+                canvas.drawLine(0, height, width/2, 0, paint);
+                canvas.drawLine(width/2, 0, width, height, paint);
+                canvas.drawLine(0, height, width,height, paint);
+                break;
+
 
             default:
                 break;
