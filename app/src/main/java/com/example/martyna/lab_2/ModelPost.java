@@ -6,14 +6,16 @@ public class ModelPost {
     int userId;
     String title;
     String bodyText;
+    int size;
 
     public ModelPost(){}
 
-    public ModelPost(int id, int userId, String title, String bodyText){
+    public ModelPost(int id, int userId, String title, String bodyText, int size){
         this.id = id;
         this.userId=userId;
         this.title=title;
         this.bodyText=bodyText;
+        this.size=size;
     }
 
     public int getId() {
@@ -47,4 +49,13 @@ public class ModelPost {
     public void setBodyText(String bodyText){
         this.bodyText=bodyText;
     }
+
+    public void setSize(int size){
+        this.size=size;
+    }
+
+    public int getSize(){
+        return size;
+    }
+
 }

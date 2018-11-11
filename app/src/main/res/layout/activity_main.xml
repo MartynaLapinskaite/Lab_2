@@ -34,4 +34,16 @@
         android:textSize="12sp"
         android:textColor="@android:color/black"/>
 
+    <TextView
+        android:id="@+id/apskritimas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/apskritimas"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:textSize="25dp" />
+
 </LinearLayout>
+
+

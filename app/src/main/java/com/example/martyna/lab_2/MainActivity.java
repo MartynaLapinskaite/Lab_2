@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements RequestOperator.R
     TextView bodyText;
     private ModelPost publication;
     private IndicatingView indicator;
+    TextView apskritimas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements RequestOperator.R
         bodyText=(TextView)findViewById(R.id.body_text);
 
         indicator=(IndicatingView)findViewById(R.id.generated_graphic);
+
+        apskritimas=(TextView)findViewById(R.id.apskritimas);
 
 
 
@@ -56,10 +59,12 @@ public class MainActivity extends AppCompatActivity implements RequestOperator.R
                 if(publication!=null){
                     title.setText(publication.getTitle());
                     bodyText.setText(publication.getBodyText());
+                    apskritimas.setText(publication.getSize()+"");
 
                 }else{
                     title.setText("");
                     bodyText.setText("");
+                    apskritimas.setText("0"+"");
                 }
             }
         });

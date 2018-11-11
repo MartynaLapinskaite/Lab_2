@@ -1,5 +1,8 @@
 package com.example.martyna.lab_2;
 
+import android.widget.TextView;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -7,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RequestOperator extends Thread{
 
@@ -17,6 +22,8 @@ public class RequestOperator extends Thread{
 
     private RequestOperatorListener listener;
     private int responseCode;
+    private List<String> re = new ArrayList<>();
+
 
     public void setListener (RequestOperatorListener listener){ this.listener=listener; }
 
@@ -39,7 +46,7 @@ public class RequestOperator extends Thread{
 
     private ModelPost request() throws IOException, JSONException{
 
-        URL obj = new URL("http://jsonplaceholder.typicode.com/posts/1");
+        URL obj = new URL("http://jsonplaceholder.typicode.com/posts");
 
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
@@ -62,21 +69,29 @@ public class RequestOperator extends Thread{
         String inputLine;
         StringBuffer response = new StringBuffer();
 
+
         while((inputLine=in.readLine())!=null){
-            response.append(inputLine);
+            if(inputLine.toCharArray()[0] !='[' && inputLine.toCharArray()[0]!=']'){
+                response = new StringBuffer();
+                response.append(inputLine);
+                while(!inputLine.contains("}")){
+                    inputLine = in.readLine();
+                    response.append(inputLine);
+                }
+                System.out.println(response.toString());
+                re.add(response.toString());
+            }
         }
         in.close();
-
         System.out.println(response.toString());
         if(responseCode == 200)
-            return parsingJsonObject(response.toString());
+            return parsingJsonObject(re);
         else
             return null;
     }
+    public ModelPost parsingJsonObject(List<String> res) throws JSONException{
 
-    public ModelPost parsingJsonObject(String response) throws JSONException{
-
-        JSONObject object = new JSONObject(response);
+        JSONObject object = new JSONObject(res.get(0));
         ModelPost post = new ModelPost();
 
         post.setId(object.optInt("id",0));
@@ -84,6 +99,7 @@ public class RequestOperator extends Thread{
 
         post.setTitle(object.getString("title"));
         post.setBodyText(object.getString("body"));
+        post.setSize(res.size());
 
         return post;
     }
